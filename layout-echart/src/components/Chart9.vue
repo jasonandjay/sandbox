@@ -92,7 +92,7 @@ export default {
         let {name, seriesName} = params[0];
         console.log("params...", params, seriesName, name);
         if (seriesName === 'world'){
-            fetch(`/assets/world/geoJson/${name}.json`).then(res=>res.json())
+            fetch(`http://123.206.55.50/static/echart-map/world/geoJson/${name}.json`).then(res=>res.json())
             .then(res=>{
                 console.log("res...", res);
                 echarts.registerMap(name, res);
@@ -101,7 +101,7 @@ export default {
         }else if(seriesName === 'China'){
             name = pinyin(name, { toneType: 'none' }).replace(/\W/ig, ''); 
             console.log("params...", params, seriesName, name);
-            fetch(`/assets/china-province/geoJson/${name}.json`).then(res=>res.json())
+            fetch(`http://123.206.55.50/static/echart-map/china-province/geoJson/${name}.json`).then(res=>res.json())
             .then(res=>{
                 console.log("res...", res);
                 let cityMap = {};
@@ -115,7 +115,7 @@ export default {
         }else if(/[市区]/.test(name) && !/[市区]/.test(seriesName)){
             console.log(this.cityMap)
             try{
-                fetch(`/assets/china-city/geoJson/${this.cityMap[name]}.json`).then(res=>res.json())
+                fetch(`http://123.206.55.50/static/echart-map/china-city/geoJson/${this.cityMap[name]}.json`).then(res=>res.json())
                 .then(res=>{
                     console.log("res...", res);
                     echarts.registerMap(name, res);
